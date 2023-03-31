@@ -84,6 +84,14 @@ public class InvoiceRepository {
         }
     }
 
+    public Order findByCustomerId(int id) {
+        Order order = getOrderById(id);
+        if (order == null) {
+            throw new IllegalStateException("order not valid");
+        }
+        return order;
+    }
+
 //
 //    public Item getItemById(int id, Order o) {
 //        return o.getItems().stream().filter(x -> x.getItemId() == id).findAny().orElse(null);

@@ -21,11 +21,7 @@ public class InvoiceController {
 
     @GetMapping("/{id}")
     public Order findByCustomerID(@PathVariable int id) {
-        Order order = invoiceRepository.getOrderById(id);
-        if (order == null) {
-            throw new IllegalStateException("order not valid");
-        }
-        return order;
+        return invoiceRepository.findByCustomerId(id);
     }
 
     @PutMapping("/{orderId}")
