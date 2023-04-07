@@ -1,21 +1,31 @@
-package edu.iu2.invoicingservice.fakedata;
+package edu.iu2.invoicingservice.data;
+
+import jakarta.persistence.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
+//@Entity
 public class InvoiceItem {
-//    private String status;
+    public InvoiceItem(List<Item> item, Address address) {
+        this.item = item;
+        this.address = address;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
     private List<Item> item = new ArrayList<>();
-    private String on;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
-//    public String getStatus() {
+    //    public String getStatus() {
 //        return status;
 //    }
 //
 //    public void setStatus(String status) {
 //        this.status = status;
 //    }
+
 
     public List<Item> getItem() {
         return item;
@@ -25,13 +35,6 @@ public class InvoiceItem {
         this.item = item;
     }
 
-    public String getOn() {
-        return on;
-    }
-
-    public void setOn(String on) {
-        this.on = on;
-    }
 
     public Address getAddress() {
         return address;

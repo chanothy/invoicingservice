@@ -1,8 +1,17 @@
-package edu.iu2.invoicingservice.fakedata;
+package edu.iu2.invoicingservice.data;
 
+import jakarta.persistence.*;
+
+@Entity
 public class Payment {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private int paymentId;
     private String method;
-    private String number;
+    private int number;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Address billingAddress;
 
     public String getMethod() {
@@ -13,11 +22,11 @@ public class Payment {
         this.method = method;
     }
 
-    public String getNumber() {
+    public int getNumber() {
         return number;
     }
 
-    public void setNumber(String number) {
+    public void setNumber(int number) {
         this.number = number;
     }
 

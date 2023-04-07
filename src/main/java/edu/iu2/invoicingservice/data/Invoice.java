@@ -1,17 +1,29 @@
-package edu.iu2.invoicingservice.fakedata;
+package edu.iu2.invoicingservice.data;
 
-import jakarta.validation.Valid;
+import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+//@Entity
+public class Invoice {
 
-public class Order {
+    public Invoice(int orderId, int customerId, String orderPlaced, double total, InvoiceItem invoiceItem, Payment payment) {
+        this.orderId = orderId;
+        this.customerId = customerId;
+        this.orderPlaced = orderPlaced;
+        this.total = total;
+        this.invoiceItem = invoiceItem;
+        this.payment = payment;
+    }
+
     private int orderId;
     private int customerId;
     private String orderPlaced;
     private double total;
+
+
+    @OneToOne(cascade = CascadeType.ALL)
     private InvoiceItem invoiceItem;
+
+    @OneToOne(cascade = CascadeType.ALL)
     private Payment payment;
 
     public int getOrderId() {
